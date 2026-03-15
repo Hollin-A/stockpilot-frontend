@@ -3,12 +3,11 @@ import Navbar from "./navbar";
 
 export default function DashboardLayout({ children }: any) {
   return (
-    <div className="flex">
+    <div className="flex h-screen overflow-hidden">
       <Sidebar />
-
-      <div className="flex-1">
+      <div className="flex-1 flex flex-col overflow-hidden">
         <Navbar />
-        <div className="p-6">{children}</div>
+        <main className="flex-1 overflow-y-auto p-6 bg-slate-50">{children}</main>
       </div>
     </div>
   );
