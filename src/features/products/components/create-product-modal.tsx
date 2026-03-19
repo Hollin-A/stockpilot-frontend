@@ -63,7 +63,9 @@ export default function CreateProductModal() {
         }
       }}
     >
-      <DialogTrigger render={<Button className="mb-4">+ Add Product</Button>} />
+      <DialogTrigger asChild>
+        <Button className="mb-4">+ Add Product</Button>
+      </DialogTrigger>
 
       <DialogContent>
         <DialogHeader>
