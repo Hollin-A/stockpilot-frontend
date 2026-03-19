@@ -4,8 +4,11 @@ import { useState } from "react";
 import { createProduct } from "../api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function CreateProductModal() {
+  const queryClient = useQueryClient();
+
   const [form, setForm] = useState({
     name: "",
     sku: "",
@@ -16,6 +19,9 @@ export default function CreateProductModal() {
 
   const handleSubmit = async () => {
     await createProduct(form);
+
+    queryClient.invalidateQueries({ queryKey: ["products"] });
+
     alert("Product created");
   };
 
