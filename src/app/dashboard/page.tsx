@@ -1,24 +1,19 @@
 "use client";
 
 import DashboardLayout from "@/components/layout/dashboard-layout";
-import { useEffect, useState } from "react";
-import { api } from "@/lib/api";
-import Metrics from "../../features/dashboard/metrics";
+import Metrics from "../../features/dashboard/components/metrics";
+import { useSales } from "@/features/dashboard/hooks/use-sales";
 
 export default function DashboardPage() {
-  const [sales, setSales] = useState<any>(null);
+  const { data, isLoading } = useSales();
 
-  useEffect(() => {
-    api.get("/analytics/sales").then((res) => {
-      setSales(res.data);
-    });
-  }, []);
+  if (isLoading) return <p>Loading...</p>;
 
   return (
     <DashboardLayout>
       <h1 className="text-2xl font-bold text-slate-700">Dashboard</h1>
 
-      <Metrics sales={sales} />
+      <Metrics sales={data} />
     </DashboardLayout>
   );
 }
