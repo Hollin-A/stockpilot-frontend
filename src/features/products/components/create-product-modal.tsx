@@ -77,7 +77,8 @@ export default function CreateProductModal() {
           className="space-y-3"
         >
           <div>
-            <Input placeholder="Name" {...form.register("name")} />
+            <label className="text-xs font-medium text-slate-600">Name</label>
+            <Input placeholder="e.g. Wireless Mouse" {...form.register("name")} />
             {form.formState.errors.name && (
               <p className="text-xs text-red-500 mt-1">
                 {form.formState.errors.name.message}
@@ -85,7 +86,8 @@ export default function CreateProductModal() {
             )}
           </div>
           <div>
-            <Input placeholder="SKU" {...form.register("sku")} />
+            <label className="text-xs font-medium text-slate-600">SKU</label>
+            <Input placeholder="e.g. WM-001" {...form.register("sku")} />
             {form.formState.errors.sku && (
               <p className="text-xs text-red-500 mt-1">
                 {form.formState.errors.sku.message}
@@ -93,9 +95,10 @@ export default function CreateProductModal() {
             )}
           </div>
           <div>
+            <label className="text-xs font-medium text-slate-600">Price ($)</label>
             <Input
               type="number"
-              placeholder="Price"
+              placeholder="e.g. 29.99"
               {...form.register("price", { valueAsNumber: true })}
             />
             {form.formState.errors.price && (
@@ -105,9 +108,10 @@ export default function CreateProductModal() {
             )}
           </div>
           <div>
+            <label className="text-xs font-medium text-slate-600">Stock</label>
             <Input
               type="number"
-              placeholder="Stock"
+              placeholder="e.g. 100"
               {...form.register("stock", { valueAsNumber: true })}
             />
             {form.formState.errors.stock && (
@@ -117,9 +121,10 @@ export default function CreateProductModal() {
             )}
           </div>
           <div>
+            <label className="text-xs font-medium text-slate-600">Low Stock Threshold</label>
             <Input
               type="number"
-              placeholder="Threshold"
+              placeholder="e.g. 10"
               {...form.register("threshold", { valueAsNumber: true })}
             />
             {form.formState.errors.threshold && (
