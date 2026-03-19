@@ -1,10 +1,10 @@
 import { api } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
+import { getProducts } from "../api";
 
 export function useProducts() {
   return useQuery({
     queryKey: ["products"],
-    queryFn: () =>
-      api.get("/products").then(res => res.data),
+    queryFn: getProducts,
   });
 }
