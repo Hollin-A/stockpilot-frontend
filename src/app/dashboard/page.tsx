@@ -3,8 +3,7 @@
 import DashboardLayout from "@/components/layout/dashboard-layout";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Metrics from "./metrics";
+import Metrics from "../../features/dashboard/metrics";
 
 export default function DashboardPage() {
   const [sales, setSales] = useState<any>(null);
