@@ -6,9 +6,10 @@ import ProductsTable from "@/features/products/components/products-table";
 import { useProducts } from "@/features/products/hooks/use-products";
 
 export default function ProductsPage() {
-  const { data, isLoading } = useProducts();
+  const { data, isLoading, isError } = useProducts();
 
   if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Failed to load products. Please try again.</p>;
 
   return (
     <DashboardLayout>
@@ -16,7 +17,7 @@ export default function ProductsPage() {
 
       <CreateProductModal />
 
-      <ProductsTable products={data} />
+      <ProductsTable products={data ?? []} />
     </DashboardLayout>
   );
 }
