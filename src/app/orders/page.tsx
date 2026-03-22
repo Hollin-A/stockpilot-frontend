@@ -8,14 +8,12 @@ import ProductList from "@/features/orders/components/product-list";
 import Cart from "@/features/orders/components/cart";
 import { useCart } from "@/features/orders/hooks/use-cart";
 import { createOrder } from "@/features/orders/api";
+import { Button } from "@/components/ui/button";
 
 export default function OrdersPage() {
-  const { data: products, isLoading, isError } = useProducts();
+  const { data: products, isLoading, isError, refetch } = useProducts();
   const cart = useCart();
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  if (isLoading) return <p>Loading...</p>;
-  if (isError) return <p>Failed to load products. Please try again.</p>;
 
   const handleCreateOrder = async () => {
     if (cart.items.length === 0) {
@@ -37,17 +35,32 @@ export default function OrdersPage() {
 
   return (
     <DashboardLayout>
-      <div className="grid grid-cols-2 gap-6">
-        <ProductList products={products ?? []} addItem={cart.addItem} />
+      {isLoading && (
+        <p className="text-sm text-slate-500">Loading products...</p>
+      )}
 
-        <Cart
-          items={cart.items}
-          total={cart.total}
-          updateQuantity={cart.updateQuantity}
-          createOrder={handleCreateOrder}
-          isSubmitting={isSubmitting}
-        />
-      </div>
+      {isError && (
+        <div className="p-4 border border-red-200 bg-red-50 rounded-lg flex items-center justify-between">
+          <p className="text-sm text-red-600">Failed to load products.</p>
+          <Button variant="outline" size="sm" onClick={() => refetch()}>
+            Retry
+          </Button>
+        </div>
+      )}
+
+      {products && (
+        <div className="grid grid-cols-2 gap-6">
+          <ProductList products={products} addItem={cart.addItem} />
+
+          <Cart
+            items={cart.items}
+            total={cart.total}
+            updateQuantity={cart.updateQuantity}
+            createOrder={handleCreateOrder}
+            isSubmitting={isSubmitting}
+          />
+        </div>
+      )}
     </DashboardLayout>
   );
 }
