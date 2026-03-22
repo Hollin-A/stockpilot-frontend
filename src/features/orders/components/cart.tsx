@@ -7,6 +7,7 @@ export default function Cart({
   total,
   updateQuantity,
   createOrder,
+  isSubmitting,
 }: any) {
   return (
     <div className="p-4 border rounded space-y-4">
@@ -32,8 +33,8 @@ export default function Cart({
 
       <div className="font-bold text-xl">Total: ${total}</div>
 
-      <Button className="w-full" onClick={createOrder}>
-        Create Order
+      <Button className="w-full" onClick={createOrder} disabled={isSubmitting || items.length === 0}>
+        {isSubmitting ? "Creating..." : "Create Order"}
       </Button>
     </div>
   );

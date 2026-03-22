@@ -5,9 +5,10 @@ import Metrics from "../../features/dashboard/components/metrics";
 import { useSales } from "@/features/dashboard/hooks/use-sales";
 
 export default function DashboardPage() {
-  const { data, isLoading } = useSales();
+  const { data, isLoading, isError } = useSales();
 
   if (isLoading) return <p>Loading...</p>;
+  if (isError) return <p>Failed to load sales data. Please try again.</p>;
 
   return (
     <DashboardLayout>
