@@ -13,8 +13,16 @@ export default function ProductList({ products, addItem }: ProductListProps) {
       {products.map((p) => (
         <div
           key={p.id}
+          role="button"
+          tabIndex={0}
           className="p-4 border rounded cursor-pointer hover:bg-gray-100"
           onClick={() => addItem(p)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              addItem(p);
+            }
+          }}
         >
           <p className="font-medium">{p.name}</p>
           <p className="text-sm text-gray-500">${p.price}</p>

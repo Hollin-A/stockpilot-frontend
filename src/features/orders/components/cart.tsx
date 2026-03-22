@@ -33,6 +33,7 @@ export default function Cart({
             type="number"
             min={1}
             value={item.quantity}
+            aria-label={`Quantity for ${item.name}`}
             className="w-16 border p-1"
             onChange={(e) =>
               updateQuantity(item.productId, Number(e.target.value))
