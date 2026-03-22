@@ -10,21 +10,13 @@ import {
 } from "recharts";
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { SalesOverTimeEntry } from "@/lib/types";
 
-export default function SalesChart({ data }: any) {
-  // fallback data (until backend aggregation is added)
-  const chartData = data?.length
-    ? data
-    : [
-        { name: "Mon", revenue: 120 },
-        { name: "Tue", revenue: 210 },
-        { name: "Wed", revenue: 180 },
-        { name: "Thu", revenue: 260 },
-        { name: "Fri", revenue: 300 },
-        { name: "Sat", revenue: 280 },
-        { name: "Sun", revenue: 350 },
-      ];
+interface SalesChartProps {
+  data: SalesOverTimeEntry[];
+}
 
+export default function SalesChart({ data }: SalesChartProps) {
   return (
     <Card>
       <CardHeader>
@@ -32,20 +24,23 @@ export default function SalesChart({ data }: any) {
       </CardHeader>
 
       <CardContent className="h-[300px]">
-        <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={chartData}>
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-
-            <Line
-              type="monotone"
-              dataKey="revenue"
-              stroke="#2563eb"
-              strokeWidth={2}
-            />
-          </LineChart>
-        </ResponsiveContainer>
+        {data.length === 0 ? (
+          <p className="text-sm text-slate-400 mt-4">No sales data yet.</p>
+        ) : (
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data}>
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="revenue"
+                stroke="#2563eb"
+                strokeWidth={2}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        )}
       </CardContent>
     </Card>
   );

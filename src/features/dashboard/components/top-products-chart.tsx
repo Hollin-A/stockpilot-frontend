@@ -10,13 +10,17 @@ import {
 } from "recharts";
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { TopProductEntry } from "@/lib/types";
 
-export default function TopProductsChart({ data }: any) {
-  const chartData = data || [
-    { name: "Coffee", qty: 40 },
-    { name: "Milk", qty: 25 },
-    { name: "Tea", qty: 30 },
-  ];
+interface TopProductsChartProps {
+  data: TopProductEntry[];
+}
+
+export default function TopProductsChart({ data }: TopProductsChartProps) {
+  const chartData = data.map((p) => ({
+    name: p.name,
+    qty: p.totalQuantitySold,
+  }));
 
   return (
     <Card>
@@ -25,15 +29,18 @@ export default function TopProductsChart({ data }: any) {
       </CardHeader>
 
       <CardContent className="h-[300px]">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={chartData}>
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-
-            <Bar dataKey="qty" fill="#22c55e" />
-          </BarChart>
-        </ResponsiveContainer>
+        {chartData.length === 0 ? (
+          <p className="text-sm text-slate-400 mt-4">No product data yet.</p>
+        ) : (
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="qty" fill="#22c55e" />
+            </BarChart>
+          </ResponsiveContainer>
+        )}
       </CardContent>
     </Card>
   );

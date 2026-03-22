@@ -26,3 +26,15 @@ export interface CreateProductInput {
   stock: number;
   threshold: number;
 }
+
+export interface SalesOverTimeEntry {
+  date: string;
+  revenue: number;
+}
+
+export interface TopProductEntry {
+  id: string;
+  name: string;
+  sku: string;
+  totalQuantitySold: number;
+}
