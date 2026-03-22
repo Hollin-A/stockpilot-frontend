@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 import { createProduct } from "../api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,11 +44,13 @@ export default function CreateProductModal() {
       setServerError(null);
       form.reset();
       setOpen(false);
+      toast.success("Product created successfully.");
     },
     onError: (err: unknown) => {
       const message =
         err instanceof Error ? err.message : "Failed to create product. Please try again.";
       setServerError(message);
+      toast.error(message);
     },
   });
 

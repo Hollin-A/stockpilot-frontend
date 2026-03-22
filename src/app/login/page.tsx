@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { api } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,6 +28,7 @@ export default function LoginPage() {
     try {
       const res = await api.post("/auth/login", { email, password });
       localStorage.setItem("token", res.data.access_token);
+      toast.success("Welcome back!");
       router.push("/dashboard");
     } catch {
       setError("Invalid email or password. Please try again.");
