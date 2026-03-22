@@ -40,7 +40,7 @@ export default function DashboardPage() {
           <div className="grid grid-cols-2 gap-6">
             <SalesChart data={salesOverTime ?? []} />
             <TopProductsChart data={topProducts ?? []} />
-            <MonthlyRevenueChart data={monthly} />
+            <MonthlyRevenueChart data={monthly ?? []} />
           </div>
         </>
       )}

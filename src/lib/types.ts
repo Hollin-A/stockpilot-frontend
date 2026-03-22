@@ -38,3 +38,8 @@ export interface TopProductEntry {
   sku: string;
   totalQuantitySold: number;
 }
+
+export interface MonthlyRevenueEntry {
+  month: string;
+  revenue: number;
+}
