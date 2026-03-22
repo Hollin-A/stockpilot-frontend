@@ -8,11 +8,14 @@ import { useTopProducts } from "@/features/dashboard/hooks/use-top-products";
 import { Button } from "@/components/ui/button";
 import SalesChart from "@/features/dashboard/components/sales-chart";
 import TopProductsChart from "@/features/dashboard/components/top-products-chart";
+import MonthlyRevenueChart from "@/features/dashboard/components/monthly-revenue-chart";
+import { useMonthlyRevenue } from "@/features/dashboard/hooks/use-monthly-revenue";
 
 export default function DashboardPage() {
   const { data, isLoading, isError, refetch } = useSales();
   const { data: salesOverTime } = useSalesOverTime();
   const { data: topProducts } = useTopProducts();
+  const { data: monthly } = useMonthlyRevenue();
 
   return (
     <DashboardLayout>
@@ -37,6 +40,7 @@ export default function DashboardPage() {
           <div className="grid grid-cols-2 gap-6">
             <SalesChart data={salesOverTime ?? []} />
             <TopProductsChart data={topProducts ?? []} />
+            <MonthlyRevenueChart data={monthly} />
           </div>
         </>
       )}
