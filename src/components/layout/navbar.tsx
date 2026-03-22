@@ -2,14 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { Bell, LogOut, Search } from "lucide-react";
+import { logout } from "@/lib/auth";
 
 export default function Navbar() {
   const router = useRouter();
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    router.push("/login");
-  };
 
   return (
     <div className="bg-white border-b border-slate-100 px-6 py-3 flex items-center justify-between">
@@ -28,7 +24,7 @@ export default function Navbar() {
           <Bell size={18} strokeWidth={1.75} />
         </button>
         <button
-          onClick={handleLogout}
+          onClick={logout}
           className="text-slate-400 hover:text-slate-600 transition"
           aria-label="Log out"
         >

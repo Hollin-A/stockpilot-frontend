@@ -3,19 +3,13 @@
 import DashboardLayout from "@/components/layout/dashboard-layout";
 import Metrics from "../../features/dashboard/components/metrics";
 import { useSales } from "@/features/dashboard/hooks/use-sales";
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function DashboardPage() {
   const { data, isLoading, isError, refetch } = useSales();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      window.location.href = "/login";
-    }
-  }, []);
+  useAuth();
 
   return (
     <DashboardLayout>
