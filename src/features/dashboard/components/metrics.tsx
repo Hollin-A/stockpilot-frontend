@@ -1,8 +1,13 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { SalesData } from "@/lib/types";
 
-export default function Metrics({ sales }: any) {
+interface MetricsProps {
+  sales: SalesData;
+}
+
+export default function Metrics({ sales }: MetricsProps) {
   return (
     <div className="grid grid-cols-4 gap-6 mb-6">
       <Card>

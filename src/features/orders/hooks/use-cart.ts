@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { CartItem, Product } from "@/lib/types";
 
 export function useCart() {
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<CartItem[]>([]);
 
-  const addItem = (product: any) => {
+  const addItem = (product: Product) => {
     const existing = items.find((i) => i.productId === product.id);
 
     if (existing) {

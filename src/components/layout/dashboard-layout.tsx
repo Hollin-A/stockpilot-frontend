@@ -1,7 +1,7 @@
 import Sidebar from "./sidebar";
 import Navbar from "./navbar";
 
-export default function DashboardLayout({ children }: any) {
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar />

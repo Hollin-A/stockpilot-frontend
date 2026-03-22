@@ -6,8 +6,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Product } from "@/lib/types";
 
-export default function ProductsTable({ products }: any) {
+interface ProductsTableProps {
+  products: Product[];
+}
+
+export default function ProductsTable({ products }: ProductsTableProps) {
   return (
     <Table>
       <TableHeader>
@@ -20,7 +25,7 @@ export default function ProductsTable({ products }: any) {
       </TableHeader>
 
       <TableBody>
-        {products.map((p: any) => (
+        {products.map((p) => (
           <TableRow key={p.id}>
             <TableCell>{p.name}</TableCell>
             <TableCell>{p.sku}</TableCell>

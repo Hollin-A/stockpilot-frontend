@@ -1,9 +1,16 @@
 "use client";
 
-export default function ProductList({ products, addItem }: any) {
+import { Product } from "@/lib/types";
+
+interface ProductListProps {
+  products: Product[];
+  addItem: (product: Product) => void;
+}
+
+export default function ProductList({ products, addItem }: ProductListProps) {
   return (
     <div className="space-y-2">
-      {products.map((p: any) => (
+      {products.map((p) => (
         <div
           key={p.id}
           className="p-4 border rounded cursor-pointer hover:bg-gray-100"

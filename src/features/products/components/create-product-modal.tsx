@@ -44,11 +44,10 @@ export default function CreateProductModal() {
       form.reset();
       setOpen(false);
     },
-    onError: (err: any) => {
-      setServerError(
-        err?.response?.data?.message ??
-          "Failed to create product. Please try again.",
-      );
+    onError: (err: unknown) => {
+      const message =
+        err instanceof Error ? err.message : "Failed to create product. Please try again.";
+      setServerError(message);
     },
   });
 

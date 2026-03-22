@@ -1,6 +1,15 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { CartItem } from "@/lib/types";
+
+interface CartProps {
+  items: CartItem[];
+  total: number;
+  updateQuantity: (productId: string, qty: number) => void;
+  createOrder: () => void;
+  isSubmitting: boolean;
+}
 
 export default function Cart({
   items,
@@ -8,12 +17,12 @@ export default function Cart({
   updateQuantity,
   createOrder,
   isSubmitting,
-}: any) {
+}: CartProps) {
   return (
     <div className="p-4 border rounded space-y-4">
       <h2 className="font-semibold text-lg">Cart</h2>
 
-      {items.map((item: any) => (
+      {items.map((item) => (
         <div key={item.productId} className="flex justify-between items-center">
           <div>
             <p>{item.name}</p>
