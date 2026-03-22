@@ -15,7 +15,7 @@ export default function Metrics({ sales }: MetricsProps) {
           <CardTitle>Total Revenue</CardTitle>
         </CardHeader>
         <CardContent className="text-2xl font-bold">
-          ${sales?.totalRevenue || 0}
+          ${sales?.totalRevenue ?? 0}
         </CardContent>
       </Card>
 
@@ -24,7 +24,7 @@ export default function Metrics({ sales }: MetricsProps) {
           <CardTitle>Total Orders</CardTitle>
         </CardHeader>
         <CardContent className="text-2xl font-bold">
-          {sales?.totalOrders || 0}
+          {sales?.totalOrders ?? 0}
         </CardContent>
       </Card>
 
