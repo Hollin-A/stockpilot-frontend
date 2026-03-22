@@ -15,7 +15,7 @@ export default function ProductList({ products, addItem }: ProductListProps) {
           key={p.id}
           role="button"
           tabIndex={0}
-          className="p-4 border rounded cursor-pointer hover:bg-gray-100"
+          className="p-4 border rounded cursor-pointer hover:bg-slate-100"
           onClick={() => addItem(p)}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
@@ -25,7 +25,7 @@ export default function ProductList({ products, addItem }: ProductListProps) {
           }}
         >
           <p className="font-medium">{p.name}</p>
-          <p className="text-sm text-gray-500">${p.price}</p>
+          <p className="text-sm text-slate-500">${p.price}</p>
         </div>
       ))}
     </div>

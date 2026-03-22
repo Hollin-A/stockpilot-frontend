@@ -49,7 +49,9 @@ export default function OrdersPage() {
       )}
 
       {products && (
-        <div className="grid grid-cols-2 gap-6">
+        <>
+          <h1 className="text-2xl font-bold mb-6">Orders</h1>
+          <div className="grid grid-cols-2 gap-6">
           <ProductList products={products} addItem={cart.addItem} />
 
           <Cart
@@ -60,6 +62,7 @@ export default function OrdersPage() {
             isSubmitting={isSubmitting}
           />
         </div>
+        </>
       )}
     </DashboardLayout>
   );

@@ -2,12 +2,18 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SalesData } from "@/lib/types";
+import { useProducts } from "@/features/products/hooks/use-products";
 
 interface MetricsProps {
   sales: SalesData;
 }
 
 export default function Metrics({ sales }: MetricsProps) {
+  const { data: products } = useProducts();
+
+  const totalProducts = products?.length ?? 0;
+  const lowStockCount = products?.filter((p) => p.stock <= p.threshold).length ?? 0;
+
   return (
     <div className="grid grid-cols-4 gap-6 mb-6">
       <Card>
@@ -32,7 +38,7 @@ export default function Metrics({ sales }: MetricsProps) {
         <CardHeader>
           <CardTitle>Products</CardTitle>
         </CardHeader>
-        <CardContent className="text-2xl font-bold">--</CardContent>
+        <CardContent className="text-2xl font-bold">{totalProducts}</CardContent>
       </Card>
 
       <Card>
@@ -40,7 +46,7 @@ export default function Metrics({ sales }: MetricsProps) {
           <CardTitle>Low Stock</CardTitle>
         </CardHeader>
         <CardContent className="text-2xl font-bold text-red-500">
-          --
+          {lowStockCount}
         </CardContent>
       </Card>
     </div>
