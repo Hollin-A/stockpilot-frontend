@@ -1,12 +1,9 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { Bell, LogOut, Search } from "lucide-react";
 import { logout } from "@/lib/auth";
 
 export default function Navbar() {
-  const router = useRouter();
-
   return (
     <div className="bg-white border-b border-slate-100 px-6 py-3 flex items-center justify-between">
       <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 w-64">
