@@ -1,6 +1,16 @@
-import { Bell, Search } from "lucide-react";
+"use client";
+
+import { useRouter } from "next/navigation";
+import { Bell, LogOut, Search } from "lucide-react";
 
 export default function Navbar() {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
+
   return (
     <div className="bg-white border-b border-slate-100 px-6 py-3 flex items-center justify-between">
       <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-1.5 w-64">
@@ -16,6 +26,13 @@ export default function Navbar() {
       <div className="flex items-center gap-3">
         <button className="text-slate-400 hover:text-slate-600 transition" aria-label="Notifications">
           <Bell size={18} strokeWidth={1.75} />
+        </button>
+        <button
+          onClick={handleLogout}
+          className="text-slate-400 hover:text-slate-600 transition"
+          aria-label="Log out"
+        >
+          <LogOut size={18} strokeWidth={1.75} />
         </button>
         <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-semibold text-sm">
           A
