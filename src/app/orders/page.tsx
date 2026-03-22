@@ -25,6 +25,7 @@ export default function OrdersPage() {
     setIsSubmitting(true);
     try {
       await createOrder(cart.items);
+      cart.clear();
       alert("Order created");
     } catch {
       alert("Failed to create order. Please try again.");

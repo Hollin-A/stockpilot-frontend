@@ -22,6 +22,7 @@ export default function Cart({
 
           <input
             type="number"
+            min={1}
             value={item.quantity}
             className="w-16 border p-1"
             onChange={(e) =>

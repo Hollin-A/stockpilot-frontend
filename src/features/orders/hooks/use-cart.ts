@@ -26,6 +26,8 @@ export function useCart() {
   };
 
   const updateQuantity = (productId: string, qty: number) => {
+    if (isNaN(qty) || qty < 1) return;
+
     setItems(
       items.map((i) =>
         i.productId === productId ? { ...i, quantity: qty } : i,
@@ -33,12 +35,17 @@ export function useCart() {
     );
   };
 
-  const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  const clear = () => setItems([]);
+
+  const total = parseFloat(
+    items.reduce((sum, i) => sum + i.price * i.quantity, 0).toFixed(2),
+  );
 
   return {
     items,
     addItem,
     updateQuantity,
+    clear,
     total,
   };
 }
