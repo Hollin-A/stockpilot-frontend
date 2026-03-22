@@ -1,7 +1,12 @@
+"use client";
+
 import Sidebar from "./sidebar";
 import Navbar from "./navbar";
+import { useAuth } from "@/hooks/use-auth";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  useAuth();
+
   return (
     <div className="flex h-screen overflow-hidden">
       <Sidebar />
