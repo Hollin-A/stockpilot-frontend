@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 import DashboardLayout from "@/components/layout/dashboard-layout";
 import { useProducts } from "@/features/products/hooks/use-products";
 import ProductList from "@/features/orders/components/product-list";
@@ -18,7 +19,7 @@ export default function OrdersPage() {
 
   const handleCreateOrder = async () => {
     if (cart.items.length === 0) {
-      alert("Cart is empty. Add items before creating an order.");
+      toast.warning("Cart is empty. Add items before creating an order.");
       return;
     }
 
@@ -26,9 +27,9 @@ export default function OrdersPage() {
     try {
       await createOrder(cart.items);
       cart.clear();
-      alert("Order created");
+      toast.success("Order created successfully.");
     } catch {
-      alert("Failed to create order. Please try again.");
+      toast.error("Failed to create order. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
